@@ -2,32 +2,32 @@ import axios from "axios";
 import config from "../config";
 import { useQuery } from "@tanstack/react-query";
 
-interface NewsImage {
+interface GalleryImage {
   id: number;
   title: string;
   description: string;
   image: string;
 }
 
-interface News {
+interface Gallery {
   id: number;
   title: string;
   description: string;
-  news: NewsImage[];
+  gallery: GalleryImage[];
   link: string;
   button: string;
   is_active: boolean;
   created: string;
 }
 
-const useNews = () => {
-  const fetchNews = () =>
-    axios.get<News[]>(config.api.newsURL).then((res) => res.data);
+const useGallery = () => {
+  const fetchGallery = () =>
+    axios.get<Gallery[]>(config.api.galleryURL).then((res) => res.data);
 
-  return useQuery<News[], Error>({
-    queryKey: ["News"],
-    queryFn: fetchNews,
+  return useQuery<Gallery[], Error>({
+    queryKey: ["Gallery"],
+    queryFn: fetchGallery,
   });
 };
 
-export default useNews;
+export default useGallery;
